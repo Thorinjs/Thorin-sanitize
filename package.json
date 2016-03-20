@@ -1,0 +1,20 @@
+{
+  "name": "thorin-sanitize",
+  "author": "Stiudeo",
+  "version": "1.0.0",
+  "dependencies": {
+    "range_check": "^1.2.0",
+    "validator": "^5.1.0"
+  },
+  "description": "Thorin.js base sanitizing kit",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stiudeo/Thorin-sanitize"
+  },
+  "homepage": "http://thorinjs.com",
+  "bugs": {
+    "url": "https://github.com/Stiudeo/Thorin-sanitize/issues"
+  }
+}

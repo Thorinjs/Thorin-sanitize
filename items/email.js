@@ -1,0 +1,30 @@
+'use strict';
+const validator = require('validator');
+/**
+ * Created by Adrian on 20-Mar-16.
+ */
+module.exports = (IFace) => {
+
+  return class SanitizeEmail extends IFace {
+    static code() { return "EMAIL" };
+    static publicName() { return "Email"; }
+
+    /*
+    * Verifies if the given input is an e-mail.
+    * OPTIONS:
+    *   tld: true -> if we need to verify the tld
+    * */
+    validate(d, opt) {
+      if(typeof d !== 'string') return false;
+
+      let v = validator.isEmail(d, {
+        require_tld: (opt.tld !== false)
+      });
+      if(!v) return false;
+      d = validator.normalizeEmail(d);
+      return {
+        value: d
+      };
+    }
+  }
+};
