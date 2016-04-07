@@ -6,6 +6,7 @@ module.exports = (IFace) => {
   const REGEX = /^-?\d+\.?\d*$/;  // allows +- numbers, and float.
   return class SanitizeNumber extends IFace {
     static code() { return "NUMBER" };
+    static aliases() { return ["INTEGER", "FLOAT"] }
     static publicName() { return "Number"; }
 
     /* Validate the string input
