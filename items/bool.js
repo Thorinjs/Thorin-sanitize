@@ -6,6 +6,7 @@ module.exports = (IFace) => {
 
   return class SanitizeBool extends IFace {
     static code() { return "BOOL" };
+    static aliases() { return ["BOOLEAN"] }
     static publicName() { return "Boolean"; }
 
     /* Validate if the input is a boolean.

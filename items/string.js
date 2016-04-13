@@ -5,6 +5,7 @@
 module.exports = (IFace) => {
   return class SanitizeString extends IFace {
     static code() { return "STRING" };
+    static aliases() { return ["TEXT", "LONGTEXT", "VARCHAR"] }
     static publicName() { return "String"; }
 
     /* Validate the string input
