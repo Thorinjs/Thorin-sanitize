@@ -5,9 +5,8 @@
 module.exports = (IFace) => {
   const REGEX = /^-?\d+\.?\d*$/;  // allows +- numbers, and float.
   return class SanitizeNumber extends IFace {
-    static code() { return "NUMBER" };
-    static aliases() { return ["INTEGER"] }
-    static publicName() { return "Number"; }
+    static code() { return "FLOAT" };
+    static publicName() { return "Float"; }
 
     /* Validate the string input
     * OPTIONS:
@@ -21,7 +20,7 @@ module.exports = (IFace) => {
         val = d;
       } else if(typeof d === 'string') {
         if(!REGEX.test(d)) return false;
-        val = (opt.float ? parseFloat(d) : parseInt(d));
+        val = parseFloat(d);
       }
       if(val == null || isNaN(val)) return false;
       if(opt.min && val < opt.min)  return false;

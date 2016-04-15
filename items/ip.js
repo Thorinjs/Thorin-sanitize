@@ -28,6 +28,7 @@ module.exports = (IFace) => {
       if(opt.public === true && PRIVATE_BLOCK.indexOf(firstBlock) !== -1) {
         return false;
       }
+      if(typeof opt.range === 'string') opt.range = [opt.range];
       if(opt.range instanceof Array && opt.range.length !== 0) {
         let isOk = rangeCheck.inRange(d, opt.range);
         if(!isOk) return false;
