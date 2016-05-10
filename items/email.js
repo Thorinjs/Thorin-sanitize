@@ -21,7 +21,10 @@ module.exports = (IFace) => {
         require_tld: (opt.tld !== false)
       });
       if(!v) return false;
-      d = validator.normalizeEmail(d);
+      d = validator.normalizeEmail(d, {
+        remove_dots: false,
+        remove_extension: false
+      });
       return {
         value: d
       };
