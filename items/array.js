@@ -19,15 +19,19 @@ module.exports = (IFace) => {
     *   - delimiter=, - the delimiter to use.
     *   - min - if specified, the min items.
     *   - max - if specified, the max items.
+    *   - type - if specified, check the inner entry type.
     * */
     validate(d, opt) {
       let val = null,
+        hasType = (typeof opt.type === 'string' ? true : false),
         delimiter = opt.delimiter || ',';
       if(d instanceof Array) {
         val = d;
       } else if(typeof d === 'string') {
         if(d.indexOf(delimiter) !== -1) {
           val = d.split(delimiter);
+        } else {
+          val = [d];
         }
       }
       if(!val) return false;
@@ -48,6 +52,16 @@ module.exports = (IFace) => {
             }
           }
           i++;
+        }
+      }
+      if(hasType) {
+        let i=0;
+        while(i < val.length) {
+          if(typeof val[i] === opt.type) {
+            i++;
+          } else {
+            val.splice(i, 1);
+          }
         }
       }
       return {
