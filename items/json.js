@@ -16,9 +16,15 @@ module.exports = (IFace) => {
       if(typeof d === 'undefined') return false;
       if(!opt.max) opt.max = 10000;
       if(typeof d === 'object' && d) {
-        return {
-          value: JSON.parse(JSON.stringify(d))
-        };
+        try {
+          let r = JSON.stringify(d);
+          if(r.length > opt.max) throw 1;
+          return {
+            value: JSON.parse(r)
+          };
+        } catch(e) {
+          return false;
+        }
       }
       if(typeof d === 'string' && d.length < opt.max) {
         try {
