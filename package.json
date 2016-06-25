@@ -1,7 +1,7 @@
 {
   "name": "thorin-sanitize",
   "author": "Stiudeo",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "dependencies": {
     "range_check": "^1.2.0",
     "validator": "^5.1.0"
@@ -11,10 +11,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Stiudeo/Thorin-sanitize"
+    "url": "https://github.com/Thorinjs/Thorin-sanitize"
   },
   "homepage": "http://thorinjs.com",
   "bugs": {
-    "url": "https://github.com/Stiudeo/Thorin-sanitize/issues"
+    "url": "https://github.com/Thorinjs/Thorin-sanitize/issues"
   }
 }
