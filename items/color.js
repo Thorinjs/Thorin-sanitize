@@ -11,7 +11,7 @@ module.exports = (IFace) => {
 
     /* Validate the string input
     * OPTIONS:
-    *   - hex = true, should we validate hext colors
+    *   - hex = true, should we validate hex colors
     *   - rgb = true, should we validate rgb colors
     *   - rgba = false, should we validate rgba colors
     * */

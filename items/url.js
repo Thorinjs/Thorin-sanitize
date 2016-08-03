@@ -9,7 +9,7 @@ module.exports = (IFace) => {
     static code() { return "URL" };
     static publicName() { return "URL"; }
 
-    /* Validate if the input is a json.
+    /* Validate if the input is a valid url.
      * OPTIONS:
      *   public=true -> does the URL HAVE to be public?
      *   protocol="http,https" -> the protocols we allow.

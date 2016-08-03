@@ -20,6 +20,7 @@ module.exports = (IFace) => {
      * OPTIONS:
      *   - min = the minimum length the string must have
      *   - max = the maximum length the string must have.
+     *   - html = should we remove < and > , defaults to true
      * */
     validate(d, opt) {
       if (typeof d === 'number') {

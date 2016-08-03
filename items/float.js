@@ -10,9 +10,8 @@ module.exports = (IFace) => {
 
     /* Validate the string input
     * OPTIONS:
-    *   - min = the minimum length the string must have
-    *   - max = the maximum length the string must have.
-    *   - float = should we use parseInt or parseFloat?
+    *   - min = the minimum value of the number
+    *   - max = the minimum value of the number
     * */
     validate(d, opt) {
       let val = null;

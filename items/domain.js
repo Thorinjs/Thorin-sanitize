@@ -21,7 +21,7 @@ module.exports = (IFace) => {
       let v = validator.isFQDN(d, {
         require_tld: opt.private ? false : true,
         allow_underscores: (typeof opt.underscore === 'undefined' ? true : opt.underscore)
-      })
+      });
       if(!v) return false;
       return {
         value: d
