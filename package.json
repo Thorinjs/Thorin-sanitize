@@ -1,10 +1,10 @@
 {
   "name": "thorin-sanitize",
   "author": "Stiudeo",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "dependencies": {
-    "range_check": "^1.2.0",
-    "validator": "^5.1.0"
+    "range_check": "1.4.0",
+    "validator": "5.5.0"
   },
   "description": "Thorin.js base sanitizing kit",
   "main": "index.js",
