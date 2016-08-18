@@ -24,6 +24,9 @@ module.exports = (IFace) => {
         isRgb = (typeof opt.rgb === 'boolean' ? opt.rgb : true),
         isRgba = (typeof opt.rgba === 'boolean' ? opt.rgba : false);
       if(isHex && HEX_REGEX.test(d)) {
+        if(d.charAt(0) !== '#') {
+          d = '#' + d;
+        }
         return {
           value: d
         };
