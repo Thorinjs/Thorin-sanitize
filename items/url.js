@@ -33,13 +33,13 @@ module.exports = (IFace) => {
         }
       }
       if(!hasProto) return false;
-      if(opt.public === false) {
+      if(opt.public === true) {
         let tmpHost = obj.host.split('.'),
           isLocal = false;
         if(tmpHost.length === 4) {  // check localIps.
           var a = parseInt(tmpHost[0]), b = parseInt(tmpHost[1]), c = parseInt(tmpHost[2]), d = parseInt(tmpHost[3]);
           if(!isNaN(a) && !isNaN(b) && !isNaN(c) && !isNaN(d)) {
-            if(a === 127 || a === 192 || a === 172 || a === 10) {
+            if(a === 127 || a === 192 || a === 172 || a === 10 || a === 0) {
               isLocal = true;
             }
           }
