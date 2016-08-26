@@ -54,6 +54,11 @@ module.exports = (IFace) => {
         obj.hash = null;
         obj.href = obj.href.split('#')[0];
       }
+      if(obj.port == null) {
+        obj.port = (obj.protocol === 'http:' ? 80 : 443);
+      } else {
+        obj.port = parseInt(obj.port, 10);
+      }
       return {
         value: obj
       };
