@@ -57,6 +57,14 @@ module.exports = (IFace) => {
       if(hasType) {
         let i=0;
         while(i < val.length) {
+          if(opt.type === 'number') {
+            let tmp = parseInt(val[i], 10);
+            if(isNaN(tmp)) {
+              val.splice(i, 1);
+              continue;
+            }
+            val[i] = tmp;
+          }
           if(typeof val[i] === opt.type) {
             i++;
           } else {
