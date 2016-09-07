@@ -25,6 +25,7 @@ module.exports = (IFace) => {
       let val = null,
         hasType = (typeof opt.type === 'string' ? true : false),
         delimiter = opt.delimiter || ',';
+      if(typeof d === 'number') d = d.toString();
       if(d instanceof Array) {
         val = d;
       } else if(typeof d === 'string') {
@@ -62,6 +63,9 @@ module.exports = (IFace) => {
               val.splice(i, 1);
               continue;
             }
+          }
+          if(opt.type === 'string' && typeof val[i] === 'number') {
+            val[i] = val[i].toString();
           }
           if(opt.type === 'number') {
             let tmp = parseInt(val[i], 10);
