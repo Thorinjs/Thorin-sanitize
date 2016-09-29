@@ -20,19 +20,21 @@ module.exports = (IFace) => {
     validate(d, opt) {
       let val = null,
         hasType = typeof opt.type === 'string';
-
       if (typeof d === 'string' && d) {
         try {
           val = JSON.parse(d);
         } catch (e) {
           return false;
         }
+      } else {
+        val = d;
       }
       if (typeof val !== 'object' || !val || val instanceof Array) {
         return false;
       }
       if (hasType) {
         Object.keys(val).forEach((key) => {
+
           if (typeof val[key] !== opt.type) {
             delete val[key];
           }

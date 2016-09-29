@@ -13,6 +13,7 @@ module.exports = (IFace) => {
      * OPTIONS:
      *   public=true -> does the URL HAVE to be public?
      *   protocol="http,https" -> the protocols we allow.
+     *   parse=false -> if set to true, we will return the actual href in the result, not the parsed url
      * */
     validate(d, opt) {
       if(typeof d !== 'string' || !d) return false;
@@ -59,6 +60,9 @@ module.exports = (IFace) => {
       } else {
         obj.port = parseInt(obj.port, 10);
       }
+      if(opt.parse === false) return {
+        value: obj.href
+      };
       return {
         value: obj
       };
