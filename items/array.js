@@ -64,6 +64,9 @@ module.exports = (IFace) => {
               continue;
             }
           }
+          if(opt.type === 'string' && typeof val[i] === 'boolean') {
+            val[i] = val[i].toString();
+          }
           if(opt.type === 'string' && typeof val[i] === 'number') {
             val[i] = val[i].toString();
           }
