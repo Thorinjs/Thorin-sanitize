@@ -84,6 +84,8 @@ module.exports = (IFace) => {
             val.splice(i, 1);
           }
         }
+        if(opt.min && val.length < opt.min) return false;
+        if(opt.max && val.length > opt.max) return false;
       }
       return {
         value: val
