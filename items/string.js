@@ -20,6 +20,7 @@ module.exports = (IFace) => {
      * OPTIONS:
      *   - min = the minimum length the string must have
      *   - max = the maximum length the string must have.
+     *   - length = the fixed length of the string.
      *   - html = should we remove < and > , defaults to true
      * */
     validate(d, opt) {
@@ -31,11 +32,15 @@ module.exports = (IFace) => {
       if (typeof d !== 'string' || !d) return false;
       d = d.trim();
       if (d === '') return false;
-      if (opt.min > 0 && d.length < opt.min) {
-        return false;
-      }
-      if (opt.max > 0 && d.length > opt.max) {
-        return false;
+      if (typeof opt.length === 'number') {
+        if (d.length !== opt.length) return false;
+      } else {
+        if (opt.min > 0 && d.length < opt.min) {
+          return false;
+        }
+        if (opt.max > 0 && d.length > opt.max) {
+          return false;
+        }
       }
       d = d.replace(/'/g, "\x27");
       d = d.replace(/"/g, "\x22");

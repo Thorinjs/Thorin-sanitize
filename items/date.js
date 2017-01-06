@@ -6,36 +6,50 @@ const validator = require('validator');
 module.exports = (IFace) => {
   const REGEX = /^\d+$/;
   return class SanitizeDate extends IFace {
-    static code() { return "DATE" };
-    static publicName() { return "Date"; }
+    static code() {
+      return "DATE"
+    };
+
+    static publicName() {
+      return "Date";
+    }
 
     /*
      * Verifies if the given input is a date
      * OPTIONS:
-     *   TODO: add date options.
+     *   opt.min -> the minimum date we want to allow, TIMESTAMP or DATE
+     *   opt.max -> the maximum date we want to allow, TIMESTAMP or DATE
      * */
     validate(d, opt) {
-      if(d instanceof Date) return {
+      if (d instanceof Date) return {
         value: d
       };
       let val = null;
-      if(typeof d === 'string') {
-        if(REGEX.test(d)) {
+      if (typeof d === 'string') {
+        if (REGEX.test(d)) {
           val = parseInt(d);
         } else {
-          if(!validator.isDate(d)) {
+          if (!validator.isDate(d)) {
             return false;
           }
           val = d;
         }
-      } else if(typeof d === 'number') {
+      } else if (typeof d === 'number') {
         val = d;
       }
-      if(val == null) return false;
-      if(typeof val === 'number') {
+      if (val == null) return false;
+      if (typeof val === 'number') {
         val = new Date(val);
       } else {
         val = validator.toDate(d);
+        if (!val) return false;
+      }
+      if (typeof opt.min !== 'undefined' || typeof opt.max !== 'undefined') {
+        let ts = val.getTime(),
+          min = (typeof opt.min === 'number' ? opt.min : (opt.min instanceof Date) ? opt.min.getTime() : null),
+          max = (typeof opt.max === 'number' ? opt.max : (opt.max instanceof Date) ? opt.max.getTime() : null);
+        if (min != null && ts < min) return false;
+        if (max != null && ts > max) return false;
       }
       return {
         value: val
