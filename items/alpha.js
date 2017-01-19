@@ -18,6 +18,7 @@ module.exports = (IFace) => {
      * Verifies if the given input is alpha-string
      * OPTIONS:
      *  - dot=false -> should we allow dots in the alpha?
+     *  - colon=false -> should we allow colons in the alpha? (:)
      *  - dash=false -> should we allow dashes in the alpha?
      *  - underscore=false -> should we allow underscore in the alpha?
      *  - numeric=false -> transforms into AlphaNumeric
@@ -29,6 +30,9 @@ module.exports = (IFace) => {
       let checker = d;
       if (opt.dot === true) {
         checker = checker.replace(/\./g, '');
+      }
+      if (opt.colon === true) {
+        checker = checker.replace(/:/g, '');
       }
       if (opt.dash === true) {
         checker = checker.replace(/\-/g, '');
