@@ -3,7 +3,7 @@
  * Created by Adrian on 20-Mar-16.
  */
 module.exports = (IFace) => {
-  const REGEX = /^-?\d+\.?\d+$/,  // allows +- numbers, and float.
+  const REGEX = /^-?\d+\.?\d?$/,  // allows +- numbers, and float.
     REGEX_INT = /^\d+$/;
   return class SanitizeNumber extends IFace {
     static code() { return "NUMBER" };
