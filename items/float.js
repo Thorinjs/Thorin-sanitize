@@ -23,8 +23,8 @@ module.exports = (IFace) => {
         val = parseFloat(d);
       }
       if(val == null || isNaN(val)) return false;
-      if(opt.min && val < opt.min)  return false;
-      if(opt.max && val > opt.max) return false;
+      if(typeof opt.min === 'number' && val < opt.min)  return false;
+      if(typeof opt.max === 'number' && val > opt.max) return false;
       return {
         value: val
       }
