@@ -20,6 +20,7 @@ module.exports = (IFace) => {
      *  OPTIONS:
      *    - min: the min length
      *    - max: the max length
+     *    - absolute: true -> we will resolve to / if set true.
      *    - prefix: true -> we will always add the first /
      * */
     validate(d, opt) {
@@ -31,6 +32,9 @@ module.exports = (IFace) => {
       if(typeof opt.max === 'number' && d.length > opt.max) return false;
       try {
         d = path.normalize(d);
+        if(opt.absolute !== false) {
+          d = path.resolve('/', d);
+        }
       } catch(e) {
         return false;
       }
