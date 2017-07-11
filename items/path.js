@@ -6,7 +6,7 @@ const validate = require('is-valid-path'),
  */
 module.exports = (IFace) => {
 
-  return class SanitizeAlpha extends IFace {
+  return class SanitizePath extends IFace {
     static code() {
       return "PATH"
     };
