@@ -1,7 +1,7 @@
 {
   "name": "thorin-sanitize",
   "author": "UNLOQ Systems",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "dependencies": {
     "is-valid-path": "0.1.1",
     "range_check": "1.4.0",

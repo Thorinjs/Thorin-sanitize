@@ -49,7 +49,11 @@ module.exports = (IFace) => {
       if(typeof opt.min === 'number' && fullBase64.length < opt.min) return false;
       if(!validator.isBase64(fullBase64)) return false;
       return {
-        value: d
+        value: {
+          mime: 'image/' + imageType,
+          data: d,
+          base64: fullBase64
+        }
       };
     }
   }
