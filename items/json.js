@@ -14,19 +14,27 @@ module.exports = (IFace) => {
     * */
     validate(d, opt) {
       if(typeof d === 'undefined') return false;
-      if(!opt.max) opt.max = 10000;
+      if(typeof opt.max === 'undefined') {
+        opt.max = 10000;
+      }
       if(typeof d === 'object' && d) {
         try {
-          let r = JSON.stringify(d);
-          if(r.length > opt.max) throw 1;
+          if(typeof opt.max === 'number') {
+            let r = JSON.stringify(d);
+            if(r.length > opt.max) throw 1;
+            return {
+              value: JSON.parse(r)
+            };
+          }
           return {
-            value: JSON.parse(r)
+            value: d
           };
         } catch(e) {
           return false;
         }
       }
-      if(typeof d === 'string' && d.length < opt.max) {
+      if(typeof d === 'string') {
+        if(typeof opt.max === 'number' && d.length > opt.max) return false;
         try {
           d = JSON.parse(d);
         } catch(e) {
