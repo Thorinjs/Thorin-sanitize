@@ -31,7 +31,7 @@ module.exports = (IFace) => {
       if (isNaN(major) || isNaN(minor) || isNaN(patch)) return false;
       if (major < 0 || minor < 0 || patch < 0) return false;
       if (major === 0 && minor === 0 && patch === 0) return false;
-      d = tmp.join('.');
+      d = major + '.' + minor + '.' + patch;
       return {
         value: d
       }
