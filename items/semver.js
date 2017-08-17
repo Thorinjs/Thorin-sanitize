@@ -30,7 +30,7 @@ module.exports = (IFace) => {
         patch = parseInt(tmp[2], 10);
       if (isNaN(major) || isNaN(minor) || isNaN(patch)) return false;
       if (major < 0 || minor < 0 || patch < 0) return false;
-      if (major === 0 || minor === 0 || patch === 0) return false;
+      if (major === 0 && minor === 0 && patch === 0) return false;
       d = tmp.join('.');
       return {
         value: d
