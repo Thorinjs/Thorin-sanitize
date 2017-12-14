@@ -45,6 +45,8 @@ module.exports = (IFace) => {
         if (!val) return false;
       }
       if (typeof opt.min !== 'undefined' || typeof opt.max !== 'undefined') {
+        if (opt.min === 'NOW') opt.min = Date.now();
+        if (opt.max === 'NOW') opt.max = Date.now();
         let ts = val.getTime(),
           min = (typeof opt.min === 'number' ? opt.min : (opt.min instanceof Date) ? opt.min.getTime() : null),
           max = (typeof opt.max === 'number' ? opt.max : (opt.max instanceof Date) ? opt.max.getTime() : null);
