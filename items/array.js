@@ -5,8 +5,13 @@
 module.exports = (IFace) => {
 
   return class SanitizeArray extends IFace {
-    static code() { return "ARRAY" };
-    static publicName() { return "List"; }
+    static code() {
+      return "ARRAY"
+    };
+
+    static publicName() {
+      return "List";
+    }
 
     /* Validate if the input is an array.
     * - default delimiter: ","
@@ -25,28 +30,28 @@ module.exports = (IFace) => {
       let val = null,
         hasType = (typeof opt.type === 'string' ? true : false),
         delimiter = opt.delimiter || ',';
-      if(typeof d === 'number') d = d.toString();
-      if(d instanceof Array) {
+      if (typeof d === 'number') d = d.toString();
+      if (d instanceof Array) {
         val = d;
-      } else if(typeof d === 'string') {
-        if(d.indexOf(delimiter) !== -1) {
+      } else if (typeof d === 'string') {
+        if (d.indexOf(delimiter) !== -1) {
           val = d.split(delimiter);
         } else {
           val = [d];
         }
       }
-      if(!val) return false;
-      if(opt.min && val.length < opt.min) return false;
-      if(opt.max && val.length > opt.max) return false;
-      if(opt.parse) {
-        let i=0;
-        while(i < val.length) {
-          if(typeof val[i] === 'string') {
+      if (!val) return false;
+      if (opt.min && val.length < opt.min) return false;
+      if (opt.max && val.length > opt.max) return false;
+      if (opt.parse) {
+        let i = 0;
+        while (i < val.length) {
+          if (typeof val[i] === 'string') {
             try {
               val[i] = JSON.parse(val[i]);
-            } catch(e) {
+            } catch (e) {
               // if it's a string, we skip.
-              if(['{', '[', '"'].indexOf(val[i].charAt(0)) !== -1) {
+              if (['{', '[', '"'].indexOf(val[i].charAt(0)) !== -1) {
                 val.splice(i, 1);
                 continue;
               }
@@ -55,37 +60,37 @@ module.exports = (IFace) => {
           i++;
         }
       }
-      if(hasType) {
-        let i=0;
-        while(i < val.length) {
-          if(opt.type === 'object') {
-            if(!val[i]) {
+      if (hasType) {
+        let i = 0;
+        while (i < val.length) {
+          if (opt.type === 'object') {
+            if (!val[i]) {
               val.splice(i, 1);
               continue;
             }
           }
-          if(opt.type === 'string' && typeof val[i] === 'boolean') {
+          if (opt.type === 'string' && typeof val[i] === 'boolean') {
             val[i] = val[i].toString();
           }
-          if(opt.type === 'string' && typeof val[i] === 'number') {
+          if (opt.type === 'string' && typeof val[i] === 'number') {
             val[i] = val[i].toString();
           }
-          if(opt.type === 'number') {
+          if (opt.type === 'number') {
             let tmp = parseInt(val[i], 10);
-            if(isNaN(tmp)) {
+            if (isNaN(tmp)) {
               val.splice(i, 1);
               continue;
             }
             val[i] = tmp;
           }
-          if(typeof val[i] === opt.type) {
+          if (typeof val[i] === opt.type) {
             i++;
           } else {
             val.splice(i, 1);
           }
         }
-        if(opt.min && val.length < opt.min) return false;
-        if(opt.max && val.length > opt.max) return false;
+        if (opt.min && val.length < opt.min) return false;
+        if (opt.max && val.length > opt.max) return false;
       }
       return {
         value: val

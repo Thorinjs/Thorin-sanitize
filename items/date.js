@@ -21,9 +21,6 @@ module.exports = (IFace) => {
      *   opt.max -> the maximum date we want to allow, TIMESTAMP or DATE
      * */
     validate(d, opt) {
-      if (d instanceof Date) return {
-        value: d
-      };
       let val = null;
       if (typeof d === 'string') {
         if (REGEX.test(d)) {
@@ -36,11 +33,13 @@ module.exports = (IFace) => {
         }
       } else if (typeof d === 'number') {
         val = d;
+      } else if (d instanceof Date) {
+        val = d;
       }
       if (val == null) return false;
       if (typeof val === 'number') {
         val = new Date(val);
-      } else {
+      } else if (!(val instanceof Date)) {
         val = validator.toDate(d);
         if (!val) return false;
       }
