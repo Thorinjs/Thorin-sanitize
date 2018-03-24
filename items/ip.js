@@ -5,11 +5,16 @@ const rangeCheck = require('range_check');
  */
 module.exports = (IFace) => {
 
-  const PRIVATE_BLOCK = [10, 127, 172, 192];
+  const PRIVATE_BLOCK = [10, 127, 172, 192, 'fd00', 'fc00'];
 
   return class SanitizeIP extends IFace {
-    static code() { return "IP" };
-    static publicName() { return "IP"; }
+    static code() {
+      return "IP"
+    };
+
+    static publicName() {
+      return "IP";
+    }
 
     /* Validate if the given IP is an IP address and if it is public / fits in the ranges.
      * OPTIONS:
@@ -18,20 +23,26 @@ module.exports = (IFace) => {
      *    - public -> if set, checks if the IP is public. IF it is not public, returns false;
      * */
     validate(d, opt) {
-      if(typeof d !== 'string' || !d) return false;
+      if (typeof d !== 'string' || !d) return false;
       d = d.trim();
-      if(!rangeCheck.validIp(d)) return false;
-      let firstBlock = parseInt(d.split('.')[0]);
-      if(opt.private === true && PRIVATE_BLOCK.indexOf(firstBlock) === -1) {
+      if (!rangeCheck.validIp(d)) return false;
+      let firstBlock,
+        cIdx = d.indexOf(':');
+      if (cIdx === -1) { // ipv4
+        firstBlock = parseInt(d.split('.')[0]);
+      } else {  // ipv6
+        firstBlock = d.substr(0, cIdx);
+      }
+      if (opt.private === true && PRIVATE_BLOCK.indexOf(firstBlock) === -1) {
         return false;
       }
-      if(opt.public === true && PRIVATE_BLOCK.indexOf(firstBlock) !== -1) {
+      if (opt.public === true && PRIVATE_BLOCK.indexOf(firstBlock) !== -1) {
         return false;
       }
-      if(typeof opt.range === 'string') opt.range = [opt.range];
-      if(opt.range instanceof Array && opt.range.length !== 0) {
+      if (typeof opt.range === 'string') opt.range = [opt.range];
+      if (opt.range instanceof Array && opt.range.length !== 0) {
         let isOk = rangeCheck.inRange(d, opt.range);
-        if(!isOk) return false;
+        if (!isOk) return false;
       }
       return {
         value: d
