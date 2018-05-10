@@ -16,7 +16,7 @@ module.exports = (IFace) => {
     * */
     validate(d, opt) {
       if(typeof d !== 'string') return false;
-
+      d = d.trim();
       let v = validator.isEmail(d, {
         require_tld: (opt.tld !== false)
       });
