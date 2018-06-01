@@ -21,6 +21,7 @@ module.exports = (IFace) => {
      *   - min = the minimum length the string must have
      *   - max = the maximum length the string must have.
      *   - length = the fixed length of the string.
+     *   - empty -> if set to true, allow empty strings as valid values.
      *   - html = should we remove < and > , defaults to true
      * */
     validate(d, opt) {
@@ -29,9 +30,16 @@ module.exports = (IFace) => {
       } else if (typeof d === 'boolean') {
         d = d.toString();
       }
-      if (typeof d !== 'string' || !d) return false;
+      if (typeof d !== 'string') return false;
       d = d.trim();
-      if (d === '') return false;
+      if (d === '') {
+        if (opt.empty === true) {
+          return {
+            value: ''
+          }
+        }
+        return false;
+      }
       if (typeof opt.length === 'number') {
         if (d.length !== opt.length) return false;
       } else {
