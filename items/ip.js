@@ -29,7 +29,13 @@ module.exports = (IFace) => {
       let firstBlock,
         cIdx = d.indexOf(':');
       if (cIdx === -1) { // ipv4
-        firstBlock = parseInt(d.split('.')[0]);
+        let c = d.split('.');
+        if (c.length !== 4) return false;
+        for (let i = 0, len = c.length; i < len; i++) {
+          let block = parseInt(c[i]);
+          if (isNaN(block) || block < 0 || block > 255) return false;
+        }
+        firstBlock = parseInt(c[0]);
       } else {  // ipv6
         firstBlock = d.substr(0, cIdx);
       }
