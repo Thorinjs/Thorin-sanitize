@@ -4,7 +4,7 @@
  */
 module.exports = (IFace) => {
   const REGEX = /^-?\d+\.?\d*$/,  // allows +- numbers, and float.
-    REGEX_INT = /^[\-]\d+$/;
+    REGEX_INT = /^[\-]*\d+$/;
   return class SanitizeNumber extends IFace {
     static code() { return "NUMBER" };
     static aliases() { return ["INTEGER"] }
