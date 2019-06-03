@@ -36,7 +36,7 @@ module.exports = (IFace) => {
         let openIdx = d.indexOf('<'),
           closeIdx = d.indexOf('>');
         if (openIdx !== -1 && closeIdx > openIdx) {
-          let emailName = d.substr(0, openIdx - 1).trim();
+          let emailName = d.substr(0, openIdx).trim();
           d = d.substr(openIdx + 1).split('>')[0];
           valuePrefix = emailName + ' <';
           valueSuffix = '>';
