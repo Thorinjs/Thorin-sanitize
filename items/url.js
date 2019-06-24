@@ -20,9 +20,13 @@ module.exports = (IFace) => {
      *   protocol="http,https" -> the protocols we allow.
      *   parse=false -> if set to true, we will return the actual href in the result, not the parsed url
      *   hash=false -> if set to true, do not strip the hash from the url
+     *   empty=false -> if set to true, we will return '' for empty string.
      * */
     validate(d, opt) {
-      if (typeof d !== 'string' || !d) return false;
+      if (typeof d !== 'string') return false;
+      if (opt.empty === true && d === '') return {
+        value: ''
+      };
       if (typeof opt.protocol === 'undefined') opt.protocol = "http,https";
       let obj,
         protocols;
