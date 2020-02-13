@@ -26,7 +26,7 @@ module.exports = (IFace) => {
         if (REGEX.test(d)) {
           val = parseInt(d);
         } else {
-          if (!validator.isDate(d)) {
+          if (!validator.isISO8601(d)) {
             return false;
           }
           val = d;
