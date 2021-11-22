@@ -50,6 +50,7 @@ module.exports = (IFace) => {
       if(val == null || isNaN(val)) return false;
       if(typeof opt.min === 'number' && val < opt.min)  return false;
       if(typeof opt.max === 'number' && val > opt.max) return false;
+      val = (opt.float ? parseFloat(val) : parseInt(val));
       return {
         value: val
       }
