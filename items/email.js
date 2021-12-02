@@ -47,6 +47,8 @@ module.exports = (IFace) => {
       });
       if (!v) return false;
       d = validator.normalizeEmail(d, {
+        all_lowercase: true,
+        gmail_remove_dots: false,
         remove_dots: false,
         remove_extension: false
       });
