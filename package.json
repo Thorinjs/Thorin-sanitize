@@ -1,7 +1,7 @@
 {
   "name": "thorin-sanitize",
   "author": "UNLOQ Systems",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "dependencies": {
     "is-valid-path": "0.1.1",
     "range_check": "1.4.0",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/Thorinjs/Thorin-sanitize"
   },
-  "homepage": "http://thorinjs.com",
+  "homepage": "https://thorinjs.com",
   "bugs": {
     "url": "https://github.com/Thorinjs/Thorin-sanitize/issues"
   }

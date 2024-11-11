@@ -22,6 +22,7 @@ module.exports = (IFace) => {
      *   - max = the maximum length the string must have.
      *   - length = the fixed length of the string.
      *   - empty -> if set to true, allow empty strings as valid values.
+     *   - emoji - if set to true, do not strip out emojis.
      *   - html = should we remove < and > , defaults to true
      * */
     validate(d, opt) {
@@ -55,6 +56,9 @@ module.exports = (IFace) => {
       if (opt.html !== true) {
         d = d.replace(/</g, "&lt;");
         d = d.replace(/>/g, "&gt;");
+      }
+      if (opt.emoji !== true) {
+        d = d.replace(/\p{Extended_Pictographic}/ug,'');
       }
       return {
         value: d
