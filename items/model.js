@@ -17,7 +17,7 @@ module.exports = (IFace) => {
     };
 
     static aliases() {
-      return ["MODEL_ID", "MODEL"]
+      return ["MODEL_ID"]
     }
 
     static publicName() {
